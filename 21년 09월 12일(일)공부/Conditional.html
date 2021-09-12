@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional</title>
+</head>
+<body>
+    <script>
+        //조건문이란 주어진 조건에 따라 에플리케이션을 다르게 동작하는것
+        //if, 조건문은 if 로 시작하며 if 뒤 괄호에 조건이 오고 조건이 참이면 괄호 다음에 구문이 실행된다
+        if(true){   // 결과 1
+            alert(1);
+        }
+
+        if(false){  // 결과 실행안됨
+            alert(2);
+        }
+
+        //else, if 만으로는 더 복잡한 상황을 처리하는데 부족함이 있을 때 else를 사용한다
+        //else는 주어진 조건이 거짓일때 실행할 구간을 정의하는 것이다
+        if(true){   // if 조건이 참이기 때문에 결과는 1이다
+            alert(1);
+        } 
+        else{
+            alert(2);
+        }
+
+        if(false){  // if 조건이 거짓이기 때문에 else 이후 중괄호가 실행되서 결과는 2이다
+            alert(1);
+        }
+        else{
+            alert(2);
+        }
+
+        //else if를 이용하면 조건문을 더욱 풍부하게 할 수 있다
+        //좀 더 다양한 케이스의 조건을 검사할 수 있고 여러개가 올 수 있다
+        if(false){
+            alert(1);
+        } else if(true){    // 결과는 2이다
+            alert(2);
+        } else if(true){
+            alert(3);
+        } else {
+            alert(4);
+        }
+
+        if(false){
+            alert(1);
+        } else if(false){    
+            alert(2);
+        } else if(true){    // 결과는 3이다
+            alert(3);
+        } else {
+            alert(4);
+        }
+
+        //비교연산자와 조건문의 결합
+        var id = prompt("아이디를 입력해주세요");
+        if(id == "abc"){    //prompt로 입력한 값이 "abc" 일 경우 if 괄호 안의 구문을 실행
+            alert("아이디가 일치합니다");
+        }
+        else{               // 그렇지 않을 경우 else 괄호 안의 구문을 실행
+            alert("아이디가 일치하지 않습니다");
+        }
+
+
+        //조건문의 중첩
+        id = prompt("아이디를 입력해주세요");
+        if(id == "abc"){     //아이디가 "abc" 일 경우 패스워드 입력창 띄우기
+            var password = prompt("비밀번호를 입력해주세여");
+            if(password == 123){     // 패스워드가 123 일 경우 인증성공 메시지 출력
+                alert("인증 성공");
+            }
+            else{
+                alert("인증 실패");   // 패스워드가 123이 아닐 경우 인증 실패 메시지 출력
+            }
+        }
+        else{                //아이디가 "abc" 가 아닐 경우 인증 실패 메시지 출력
+           alert("인증실패");
+        }
+
+        //&&, 좌항과 우항이 모두 참(true)일 때만 참이 된다
+        //논리 연산자중 and 연산자라고 한다
+        if(true && true){   // 모두 참이여야 하기 때문에 결과는 1
+            alert(1);
+        }
+        if(true && false){
+            alert(2);
+        }
+        if(false && true){
+            alert(3);
+        }
+        if(false && false){
+            alert(4);
+        }
+
+        //||, 좌항과 우항중 하나라도 참(true)이면 참이된다
+        //논리 연산자중 or 연산자라고 한다
+        if(true && true){   
+            alert(1);
+        }
+        if(true && false){
+            alert(2);
+        }
+        if(false && true){
+            alert(3);
+        }
+        if(false && false){    // 좌우항 둘다 참이 아니기 때문에 결과는 1, 2, 3    
+            alert(4);
+        }
+
+        //!, "!"는 부정의 의미로 Boolean의 값을 역전시킨다(true -> false, false -> true)
+        //논리 연산자중 not 연산자라고 한다
+        if(!true && !true){   
+            alert(1);
+        }
+        if(!true && !false){
+            alert(2);
+        }
+        if(!false && !true){
+            alert(3);
+        }
+        if(!false && !false){   // 좌우항 둘다 true 여야 하니 결과는 4
+            alert(4);
+        }
+
+        //01, 조건문의 true, false 대신 간주될 수 있는 수이다
+        //0은 false를, 0이 아닌값은 true로 간주된다(그냥 true는 1이외의 수는 다 false로 간주하지만
+        //조건문에서의 true는 0이 아니면 다 true로 간주된다)
+        if(0){
+            alert(1)
+        }
+
+        if(1){  //1은 true로 간주되기에 결과는 2
+        alert(2)
+        }
+
+        //기타 false로 간주되는 데이터 형
+        //아래 조건문이 실행되는 이유는 주어진 값들이 모두 false이기 때문에 앞에 !(부정)을 붙여서 true로 만들어 줬기 때문이다
+        if(!''){
+            alert('빈 문자열')
+        }
+        if(!undefined){
+            alert('undefined');
+        }
+        var c;
+        if(!c){
+            alert('값이 할당되지 않은 변수'); 
+        }
+        if(!null){
+            alert('null');
+        }
+        if(!NaN){
+            alert('NaN');
+        }
+    </script>
+</body>
+</html>
