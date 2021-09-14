@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../../JS file/Array.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <script>
+        //배열(array)이란 연관된 데이터를 모아서 통으로 관리하기 위해서 사용하는 데이터 타입이다
+        var fruits = ["apple", "banana", "mango"];
+        
+        //각각의 데이터들을 원소(Element)라고 부른다
+        //배열에 담겨있는 값을 가져올 때는 index 번호를 사용한다
+        alert(fruits[0]);
+        alert(fruits[1]);
+        alert(fruits[2]);
+
+        
+        var fruits2 = get_fruits();
+        document.write(fruits2[0] + "<br />");
+        document.write(fruits2[1] + "<br />");
+        document.write(fruits2[2] + "<br />");
+        document.write("<br />");
+
+        //fruits2.length는 배열에 담긴 값의 숫자를 알려준다
+        for (var i = 0; i < fruits2.length; i++){
+            document.write(fruits2[i].toUpperCase() + "<br />"); // toUpperCase()는 fruit2[i]에 담긴 문자들을 대문자로 변환해준다
+        }
+
+
+        //배열은 복수의 데이터를 효율적으로 관리, 전달하기 위한 목적으로 고안된 데이터 타입이다
+        //배열의 크기, 아래와 같은 방법으로 배열의 크기를 알아낼 수 있다
+        var number = [1, 2, 3, 4, 5];
+        alert(number.length);
+
+        //배열의 조작(추가)
+
+        //push는 인자로 전달된 값을 배열(eng)에 추가하는 명령이다
+        var eng = ["a", "b", "c", "d", "e"];
+        eng.push("f");
+        alert(eng); // ["a", "b", "c", "d", "e", "f"]
+
+        //unshift는 인자로 전달한 값을 배열의 첫번째 원소로 추가하고 배열의 기존 값들의 Index를 1씩 증가시킨다
+        eng = ["a", "b", "c", "d", "e"];
+        eng.unshift("x", "y", "z");
+        alert(eng); // ["x", "y", "z" ,"a", "b", "c", "d", "e"];
+
+        //splice는 첫번째 인자에 해당하는 원소부터 두번째 인자에 해당하는 원소의 숫자만큼의 값을 배열로부터 제거한 후에 리턴한다
+        //그리고 세번째 인자부터 전달된 인자들을 첫번째 인자의 원소 뒤에 추가한다
+        eng = ["a", "b", "c", "d", "e"];
+        eng.splice(3, 0, "C");
+        alert(eng); // ["a", "b", "c", "C", "d", "e"]
+                    //   0    1    2    3    4    5
+
+        //배열의 조작(제거)
+
+        //pop은 배열의 맨 끝의 원소를 제거한다
+        eng = ["a", "b", "c", "d", "e"];
+        eng.pop();
+        alert(eng); // ["a", "b", "c", "d"];
+
+        //shitf는 배열의 맨 앞의 원소를 제거한다
+        eng = ["a", "b", "c", "d", "e"];
+        eng.shift();
+        alert(eng); // ["b", "c", "d", "d"];
+
+        //배열의 조작(정렬)
+
+        //sort는 배열을 순서대로 정렬하는 방법이다
+        eng = ["c", "e", "a", "d", "b"];
+        eng.sort();
+        alert(eng);
+
+        //reverse는 배열을 역순으로 정렬하는 방법이다
+        eng = ["a", "b", "c", "d", "e"];
+        eng.reverse();
+        alert(eng);
+    </script>
+</body>
+</html>
