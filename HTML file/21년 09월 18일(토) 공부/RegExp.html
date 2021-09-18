@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegExp</title>
+</head>
+<body>
+    <script>
+        //정규표현식(Regular Expression)은 문자열을 처리하는 방법 중의 하나로
+        //특정한 조건의 문자를 '검색'하거나 '치환'하는 과정을 매우 간편하게 처리 할 수 있도록 하는 수단이다.
+
+
+        //정규표현식 생성
+        //정규표현식은 두가지 단계로 이루어진다. 하나는 컴파일(compile) 다른 하나는 실행(execution)이다
+
+
+        //컴파일은 검출하고자 하는 패턴을 만드는 일이다, 우선 정규표현식 객체를 만들어야 한다
+        //아래 두가지 모두 같은 결과를 만들지만 각각의 장단점이 있다
+
+        //정규표현식 리터럴
+        var pattern = /a/;
+
+        //정규표현식 객체 생성자
+        var pattern1 = new RegExp("a");
+        
+
+        //정규표현식 메소드 실행
+        //RegExp.exec(), 인자 안에 패턴에 해당되는 문자열이 있으면 그 패턴을 값으로 하는 배열을 리턴
+        document.write(pattern.exec("abc") + "<br />")  // ["a"];
+        document.write(pattern.exec("bcd") + "<br />")  // null
+
+        //RegExp.test(), 인자 안에 패턴에 해당되는 문자열이 있으면 true, 없으면 false를 리턴
+        document.write(pattern.test('abc') + "<br />");  // true
+        document.write(pattern.test('bcd') + "<br />");  // false 
+
+
+        //문자열 메소드 실행
+        //String.match(), RegExp.exec()와 비슷하다
+        document.write("abc".match(pattern) + "<br />");  // ["a"]
+        document.write("bcd".match(pattern) + "<br />");  // null
+
+        //String.replace(), 문자열에서 패턴을 검색해서 이를 변경한 후에 변경된 값을 리턴
+        document.write("abc".replace(pattern, "A") + "<br />");  // Abc
+
+
+        //옵션, 정규표현식 패턴을 만들 때 옵션을 설정할 수 있다
+        //i, i를 붙이면 대소문자를 구분하지 않음
+        var xi = /a/;
+        document.write("ABCD".match(xi) + "<br />");  // null
+        
+        var oi = /a/i;
+        document.write("ABCD".match(oi) + "<br />");  // ["A"]
+
+        //g, g를 붙이면 검색된 모든 결과를 리턴 
+        var xg = /a/;
+        document.write("aaaabbbccd".match(xg) + "<br />");  // a
+
+        var og = /a/g;
+        document.write("aaaabbbccd".match(og) + "<br />");  // a,a,a,a
+
+
+        //캡처, 괄호안의 패턴은 마치 변수처럼 재사용할 수 있다. 이 때 기호 $를 사용한다
+        var pattern = /(\w+)\s(\w+)/; 
+        // \w은 a~z, A~Z, 0~9에 해당하는 문자, +는 그 문자가 1개 이상일때, \s는 공백, ()는 하나의 그룹을 의미 => (word) (word)
+        //이 조건들을 모두 만족해야 하나의 패턴이 성립된다 ex) "hello world" => 조건에 만족하기 때문에 패턴이 성립한다
+
+        var str = "coding everybody";
+        var result = str.replace(pattern, "$2 $1");
+        //$는 그룹을 지칭하는 기호이다 $1은 위 패턴에서 첫번째 그룹을 의미하고, $2는 두번째 그룹을 의미한다
+        //str, coding everybody를 두번째 그룹이 앞으로 오고 첫번째 그룹이 뒤로 가게 한다
+        document.write(result + "<br />"); // everybody coding
+
+
+        //치환, 아래 코드는 URL을 링크 html 태그로 교체한다
+        var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
+        var content = "네이버 : https://www.naver.com/ 다음 : https://www.daum.net/";
+        var result = content.replace(urlPattern, function(url){
+            return '<a href="'+url+'">'+url+'</a>';
+        });
+        document.write(result);
+    </script>
+</body>
+</html>
